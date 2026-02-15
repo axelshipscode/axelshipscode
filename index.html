@@ -2,81 +2,783 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Axel Ships Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axel Ships Code | Full-Stack Software Engineer</title>
+  <meta name="description" content="Axel is a full-stack software engineer with 10+ years of experience building production systems. From enterprise SaaS to App Store apps." />
+  <meta property="og:title" content="Axel Ships Code" />
+  <meta property="og:description" content="Full-stack engineer. 10+ years shipping production systems." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg-card: #141414;
+      --bg-card-hover: #1a1a1a;
+      --text: #ededed;
+      --text-secondary: #888;
+      --text-muted: #555;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --border: #222;
+      --winme: #3b82f6;
+      --jsonreceipts: #10b981;
+      --choreup: #8b5cf6;
+      --lugares: #f59e0b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
     body {
-      background-color: #0e0e0e;
-      color: #f5f5f5;
-      font-family: "Segoe UI", sans-serif;
-      margin: 0;
-      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 100px auto;
-      padding: 20px;
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0 24px;
+      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-content {
       text-align: center;
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
     }
 
-    .headshot {
-      width: 180px;
-      height: 180px;
+    .hero-headshot {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #3b82f6;
+      border: 3px solid var(--border);
+      margin-bottom: 32px;
+      transition: border-color 0.3s;
+    }
+
+    .hero-headshot:hover { border-color: var(--accent); }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
       margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.2em;
+    .hero h1 .accent { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
     }
 
-    h1 span {
-      color: #3b82f6;
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 12px 28px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
     }
 
-    p {
-      font-size: 1.2rem;
-      line-height: 1.6;
+    .hero-cta:hover {
+      background: var(--accent);
+      color: #fff;
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      font-size: 1.1rem;
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s;
     }
 
-    ul li::before {
-      content: "🛠️ ";
+    .hero-cta:hover svg { transform: translateY(3px); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 100px 24px;
     }
 
-    .footer {
-      margin-top: 50px;
-      font-size: 0.9rem;
-      color: #888;
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    /* ─── PROJECTS ─── */
+    #projects { border-top: 1px solid var(--border); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .project-card:hover {
+      border-color: #333;
+      transform: translateY(-2px);
+    }
+
+    .project-card[data-accent="blue"]::before { background: var(--winme); }
+    .project-card[data-accent="green"]::before { background: var(--jsonreceipts); }
+    .project-card[data-accent="purple"]::before { background: var(--choreup); }
+    .project-card[data-accent="amber"]::before { background: var(--lugares); }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .project-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .project-badge {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .badge-live {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+    }
+
+    .badge-appstore {
+      background: rgba(139, 92, 246, 0.12);
+      color: #a78bfa;
+    }
+
+    .badge-wip {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+    }
+
+    .project-type {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .project-desc {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tech-pill {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .project-link:hover { color: var(--accent); }
+
+    .project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { border-top: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ─── TECH ─── */
+    .tech-section {
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tech-section-title {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tech-item {
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-heading {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .contact-sub {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .contact-btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .contact-btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .contact-btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .contact-btn-secondary:hover {
+      border-color: #444;
+      background: var(--bg-card);
+    }
+
+    .contact-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      section { padding: 72px 20px; }
+
+      .nav-links { gap: 20px; }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .project-card { padding: 24px; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+
+      .hero { padding: 100px 20px 60px; }
+
+      .hero-headshot {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 24px;
+      }
+
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: 0.8125rem; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="headshot.png" alt="Axel" class="headshot" />
-    <h1>I am a <span>Solo Develing</span></h1>
-    <p>Leveling up one commit at a time.</p>
 
-    <ul>
-      <li>⚙️ 20 years of software engineering XP</li>
-      <li>🧱 Systems Architect & Infra Strategist</li>
-      <li>🚀 Startup Scaling Sensei</li>
-      <li>🕵️‍♂️ White Hat by day (and night)</li>
-      <li>🧑‍🏫 Mentoring juniors since v1.0</li>
-    </ul>
-
-    <div class="footer">
-      <p>📬 Find me at <a href="https://github.com/axelshipscode" style="color: #3b82f6;">github.com/axelshipscode</a></p>
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">axel<span>shipscode</span></a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
-  </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-content">
+        <img src="headshot.png" alt="Axel" class="hero-headshot fade-in" />
+        <h1 class="fade-in fade-in-delay-1">Axel <span class="accent">ships code.</span></h1>
+        <p class="hero-sub fade-in fade-in-delay-2">
+          Full-stack engineer with 10+ years building production systems. Solo developer, team player, and technical leader.
+        </p>
+        <a href="#projects" class="hero-cta fade-in fade-in-delay-3">
+          See my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-inner">
+        <p class="section-label fade-in">Portfolio</p>
+        <h2 class="section-title fade-in">Built and shipped.</h2>
+
+        <div class="projects-grid">
+          <!-- WinMe -->
+          <div class="project-card fade-in fade-in-delay-1" data-accent="blue">
+            <div class="project-header">
+              <span class="project-name">WinMe</span>
+              <span class="project-badge badge-live">Live</span>
+            </div>
+            <p class="project-type">Marketing Campaign Platform</p>
+            <p class="project-desc">
+              Enterprise SaaS for managing promotional campaigns at scale. Receipt OCR processing, prize distribution, multi-store management, and real-time analytics, built for the Australian market.
+            </p>
+            <div class="project-tech">
+              <span class="tech-pill">Laravel</span>
+              <span class="tech-pill">Vue 3</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">AWS</span>
+              <span class="tech-pill">Inertia.js</span>
+            </div>
+            <a href="https://winme.com.au" target="_blank" rel="noopener" class="project-link">
+              winme.com.au
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+          </div>
+
+          <!-- JSON Receipts -->
+          <div class="project-card fade-in fade-in-delay-2" data-accent="green">
+            <div class="project-header">
+              <span class="project-name">JSON Receipts</span>
+              <span class="project-badge badge-live">Live</span>
+            </div>
+            <p class="project-type">AI Receipt Processing API</p>
+            <p class="project-desc">
+              Developer API that turns receipt photos into structured JSON using AI. Full SaaS with credit-based billing, webhooks, rate limiting, fraud detection, and enterprise-grade security.
+            </p>
+            <div class="project-tech">
+              <span class="tech-pill">Laravel</span>
+              <span class="tech-pill">Vue 3</span>
+              <span class="tech-pill">OpenAI</span>
+              <span class="tech-pill">Stripe</span>
+              <span class="tech-pill">Redis</span>
+            </div>
+          </div>
+
+          <!-- ChoreUp -->
+          <div class="project-card fade-in fade-in-delay-3" data-accent="purple">
+            <div class="project-header">
+              <span class="project-name">ChoreUp</span>
+              <span class="project-badge badge-appstore">App Store</span>
+            </div>
+            <p class="project-type">Family Chore Management - iOS</p>
+            <p class="project-desc">
+              Native iOS app for families to manage chores through a gamified rewards system. Offline-first, supports 7 languages, in-app purchases, and biometric authentication.
+            </p>
+            <div class="project-tech">
+              <span class="tech-pill">SwiftUI</span>
+              <span class="tech-pill">SwiftData</span>
+              <span class="tech-pill">StoreKit 2</span>
+              <span class="tech-pill">iOS 17+</span>
+            </div>
+          </div>
+
+          <!-- Lugares -->
+          <div class="project-card fade-in fade-in-delay-4" data-accent="amber">
+            <div class="project-header">
+              <span class="project-name">Lugares</span>
+              <span class="project-badge badge-wip">In Development</span>
+            </div>
+            <p class="project-type">Travel Discovery Marketplace</p>
+            <p class="project-desc">
+              Community-driven platform for discovering 5,590+ tourist destinations across America. Gamified contributor system, festival calendar, Q&A forum, and regional competitions.
+            </p>
+            <div class="project-tech">
+              <span class="tech-pill">Laravel</span>
+              <span class="tech-pill">Vue 3</span>
+              <span class="tech-pill">Inertia.js</span>
+              <span class="tech-pill">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-inner">
+        <p class="section-label fade-in">About</p>
+        <h2 class="section-title fade-in">The person behind the code.</h2>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="fade-in">
+              <strong>I've spent the last decade building software that works.</strong> Not prototypes. Not side projects that never see users. Production systems that handle real data, real transactions, and real people depending on them every day.
+            </p>
+            <p class="fade-in">
+              I've done it solo, architecting entire platforms from database to deployment. I've done it in teams, leading engineers, making technical decisions, and shipping under pressure. Both come naturally.
+            </p>
+            <p class="fade-in">
+              I care about clean architecture, reliable infrastructure, and code that the next person can actually read. No shortcuts. No over-engineering. Just the right amount of complexity for the problem at hand.
+            </p>
+          </div>
+
+          <div class="fade-in">
+            <div class="stats-grid">
+              <div class="stat">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years in the industry</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Production systems</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">Web + iOS</div>
+                <div class="stat-label">Full-stack range</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number">Solo &rarr; Lead</div>
+                <div class="stat-label">Role versatility</div>
+              </div>
+            </div>
+
+            <div class="tech-section">
+              <p class="tech-section-title">Technologies</p>
+              <div class="tech-list">
+                <span class="tech-item">PHP</span>
+                <span class="tech-item">Laravel</span>
+                <span class="tech-item">JavaScript</span>
+                <span class="tech-item">TypeScript</span>
+                <span class="tech-item">Vue.js</span>
+                <span class="tech-item">Swift</span>
+                <span class="tech-item">SwiftUI</span>
+                <span class="tech-item">PostgreSQL</span>
+                <span class="tech-item">MySQL</span>
+                <span class="tech-item">Redis</span>
+                <span class="tech-item">AWS</span>
+                <span class="tech-item">Tailwind CSS</span>
+                <span class="tech-item">Inertia.js</span>
+                <span class="tech-item">Docker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-inner">
+        <p class="section-label fade-in">Contact</p>
+        <h2 class="contact-heading fade-in">Let's talk.</h2>
+        <p class="contact-sub fade-in">
+          Have a project in mind or want to work together? I'm always open to a good conversation.
+        </p>
+        <div class="contact-links fade-in">
+          <a href="mailto:axelshipscode@gmail.com" class="contact-btn contact-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Send an email
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-text">Axel ships code.</p>
+  </footer>
+
+  <script>
+    // Scroll-based nav background
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
