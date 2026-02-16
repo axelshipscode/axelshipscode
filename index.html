@@ -21,6 +21,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
 
@@ -40,12 +42,12 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <img src="images/headshot.png" alt="Axel" class="hero-headshot fade-in" />
-        <h1 class="fade-in fade-in-delay-1">Axel <span class="accent">ships code.</span></h1>
-        <p class="hero-sub fade-in fade-in-delay-2">
+        <img src="images/headshot.png" alt="Axel" class="hero-headshot" />
+        <h1>Axel <span class="accent">ships code.</span></h1>
+        <p class="hero-sub">
           Full-stack engineer with 10+ years building production systems. Solo developer, team player, and technical leader.
         </p>
-        <a href="#projects" class="hero-cta fade-in fade-in-delay-3">
+        <a href="#projects" class="hero-cta">
           See my work
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
         </a>
@@ -55,12 +57,12 @@
     <!-- PROJECTS -->
     <section id="projects">
       <div class="section-inner">
-        <p class="section-label fade-in">Portfolio</p>
-        <h2 class="section-title fade-in">Built and shipped.</h2>
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title">Built and shipped.</h2>
 
         <div class="projects-grid">
           <!-- WinMe -->
-          <div class="project-card fade-in fade-in-delay-1" data-accent="blue">
+          <div class="project-card" data-accent="blue">
             <div class="project-header">
               <span class="project-name">WinMe</span>
               <span class="project-badge badge-live">Live</span>
@@ -84,7 +86,7 @@
           </div>
 
           <!-- JSON Receipts -->
-          <div class="project-card fade-in fade-in-delay-2" data-accent="green">
+          <div class="project-card" data-accent="green">
             <div class="project-header">
               <span class="project-name">JSON Receipts</span>
               <span class="project-badge badge-live">Live</span>
@@ -106,8 +108,8 @@
             </a>
           </div>
 
-          <!-- ChoreUp -->
-          <div class="project-card fade-in fade-in-delay-3" data-accent="purple">
+          <!-- ChoreUp — full-width -->
+          <div class="project-card project-card-wide" data-accent="purple">
             <div class="project-header">
               <span class="project-name">ChoreUp</span>
               <span class="project-badge badge-appstore">App Store</span>
@@ -127,22 +129,29 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
             </a>
           </div>
+        </div>
 
-          <!-- Lugares -->
-          <div class="project-card fade-in fade-in-delay-4" data-accent="amber">
-            <div class="project-header">
-              <span class="project-name">Lugares</span>
-              <span class="project-badge badge-wip">In Development</span>
-            </div>
-            <p class="project-type">Travel Discovery Marketplace</p>
-            <p class="project-desc">
-              Community-driven platform for discovering 5,590+ tourist destinations across America. Gamified contributor system, festival calendar, Q&A forum, and regional competitions.
-            </p>
-            <div class="project-tech">
-              <span class="tech-pill">Laravel</span>
-              <span class="tech-pill">Vue 3</span>
-              <span class="tech-pill">Inertia.js</span>
-              <span class="tech-pill">Tailwind CSS</span>
+        <!-- What's next -->
+        <div class="upcoming">
+          <p class="upcoming-label">What's next</p>
+          <div class="upcoming-card" data-accent="amber">
+            <div class="upcoming-main">
+              <div>
+                <div class="project-header">
+                  <span class="project-name">Lugares</span>
+                  <span class="project-badge badge-wip">In Development</span>
+                </div>
+                <p class="project-type">Travel Discovery Marketplace</p>
+                <p class="project-desc">
+                  Community-driven platform for discovering 5,590+ tourist destinations across America. Gamified contributor system, festival calendar, Q&A forum, and regional competitions.
+                </p>
+              </div>
+              <div class="project-tech">
+                <span class="tech-pill">Laravel</span>
+                <span class="tech-pill">Vue 3</span>
+                <span class="tech-pill">Inertia.js</span>
+                <span class="tech-pill">Tailwind CSS</span>
+              </div>
             </div>
           </div>
         </div>
@@ -152,26 +161,26 @@
     <!-- ABOUT -->
     <section id="about">
       <div class="section-inner">
-        <p class="section-label fade-in">About</p>
-        <h2 class="section-title fade-in">The person behind the code.</h2>
+        <p class="section-label">About</p>
+        <h2 class="section-title">The person behind the code.</h2>
 
         <div class="about-grid">
           <div class="about-text">
-            <p class="fade-in">
+            <p>
               <strong>I've spent the last decade building software that works.</strong> Not prototypes. Not side projects that never see users. Production systems that handle real data, real transactions, and real people depending on them every day.
             </p>
-            <p class="fade-in">
+            <p>
               I've done it solo, architecting entire platforms from database to deployment. I've done it in teams, leading engineers, making technical decisions, and shipping under pressure. Both come naturally.
             </p>
-            <p class="fade-in">
+            <p>
               I care about clean architecture, reliable infrastructure, and code that the next person can actually read. No shortcuts. No over-engineering. Just the right amount of complexity for the problem at hand.
             </p>
-            <p class="fade-in">
+            <p>
               I also recognise that AI is reshaping how software gets built. I actively integrate AI tools and workflows into my development process, not as a gimmick, but as a genuine force multiplier. Staying sharp means staying curious, and I'm always learning how to ship better work, faster.
             </p>
           </div>
 
-          <div class="fade-in">
+          <div>
             <div class="stats-grid">
               <div class="stat">
                 <div class="stat-number">10+</div>
@@ -229,12 +238,12 @@
     <!-- CONTACT -->
     <section id="contact">
       <div class="section-inner">
-        <p class="section-label fade-in">Contact</p>
-        <h2 class="contact-heading fade-in">Let's talk</h2>
-        <p class="contact-sub fade-in">
+        <p class="section-label">Contact</p>
+        <h2 class="contact-heading">Let's talk</h2>
+        <p class="contact-sub">
           Have a project in mind or want to work together? I'm always open to a good conversation.
         </p>
-        <div class="contact-links fade-in">
+        <div class="contact-links">
           <a href="mailto:axelshipscode@gmail.com" class="contact-btn contact-btn-primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             Send an email
@@ -261,20 +270,59 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
+    // GSAP animations
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
 
-    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+      const ease = 'power3.out';
+
+      // ── Hero entrance ──
+      const heroTl = gsap.timeline({ defaults: { ease, duration: 0.8 } });
+      heroTl
+        .from('.hero-headshot', { y: 30, opacity: 0, scale: 0.9 })
+        .from('.hero h1', { y: 30, opacity: 0 }, '-=0.5')
+        .from('.hero-sub', { y: 20, opacity: 0 }, '-=0.5')
+        .from('.hero-cta', { y: 20, opacity: 0 }, '-=0.4');
+
+      // ── Helper: scroll-triggered reveal ──
+      function reveal(selector, vars = {}) {
+        gsap.from(selector, {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          ease,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: selector,
+            start: 'top 85%',
+            once: true,
+          },
+          ...vars,
+        });
+      }
+
+      // ── Projects section ──
+      reveal('#projects .section-label');
+      reveal('#projects .section-title');
+      reveal('.project-card', { stagger: 0.15, y: 40 });
+
+      // ── Upcoming ──
+      reveal('.upcoming-label', { scrollTrigger: { trigger: '.upcoming', start: 'top 85%', once: true } });
+      reveal('.upcoming-card', { y: 30, scrollTrigger: { trigger: '.upcoming', start: 'top 80%', once: true } });
+
+      // ── About section ──
+      reveal('#about .section-label');
+      reveal('#about .section-title');
+      reveal('.about-text p', { stagger: 0.12 });
+      reveal('.stat', { stagger: 0.1, y: 25 });
+      reveal('.tech-section', { y: 20 });
+
+      // ── Contact section ──
+      reveal('#contact .section-label');
+      reveal('.contact-heading');
+      reveal('.contact-sub');
+      reveal('.contact-links');
+    });
   </script>
 </body>
 </html>
