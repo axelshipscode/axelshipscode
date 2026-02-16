@@ -235,10 +235,66 @@ section {
   transform: translateY(-2px);
 }
 
+.project-card-wide { grid-column: 1 / -1; }
+
 .project-card[data-accent="blue"]::before { background: var(--winme); }
 .project-card[data-accent="green"]::before { background: var(--jsonreceipts); }
 .project-card[data-accent="purple"]::before { background: var(--choreup); }
-.project-card[data-accent="amber"]::before { background: var(--lugares); }
+.project-card[data-accent="amber"]::before,
+.upcoming-card[data-accent="amber"]::before { background: var(--lugares); }
+
+/* ─── UPCOMING ─── */
+.upcoming {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.upcoming-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.upcoming-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.upcoming-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.upcoming-card:hover { border-color: #333; }
+
+.upcoming-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.upcoming-main .project-desc {
+  max-width: 600px;
+}
+
+.upcoming-main .project-tech {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
 
 .project-header {
   display: flex;
@@ -519,21 +575,7 @@ footer {
 }
 
 /* ─── ANIMATIONS ─── */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.fade-in-delay-1 { transition-delay: 0.1s; }
-.fade-in-delay-2 { transition-delay: 0.2s; }
-.fade-in-delay-3 { transition-delay: 0.3s; }
-.fade-in-delay-4 { transition-delay: 0.4s; }
+/* GSAP handles all entrance animations */
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 768px) {
@@ -547,6 +589,13 @@ footer {
   }
 
   .project-card { padding: 24px; }
+
+  .upcoming-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upcoming-card { padding: 24px; }
 
   .about-grid {
     grid-template-columns: 1fr;
