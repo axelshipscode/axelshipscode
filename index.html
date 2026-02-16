@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-272XVSTZT9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-272XVSTZT9');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axel Ships Code | Full-Stack Software Engineer</title>
@@ -8,555 +16,18 @@
   <meta property="og:title" content="Axel Ships Code" />
   <meta property="og:description" content="Full-stack engineer. 10+ years shipping production systems." />
   <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="images/axel_ships_code_icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --bg-card: #141414;
-      --bg-card-hover: #1a1a1a;
-      --text: #ededed;
-      --text-secondary: #888;
-      --text-muted: #555;
-      --accent: #3b82f6;
-      --accent-hover: #60a5fa;
-      --border: #222;
-      --winme: #3b82f6;
-      --jsonreceipts: #10b981;
-      --choreup: #8b5cf6;
-      --lugares: #f59e0b;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 80px;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 0 24px;
-      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
-      border-bottom: 1px solid transparent;
-    }
-
-    nav.scrolled {
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom-color: var(--border);
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .nav-logo {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-
-    .nav-logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      max-width: 720px;
-    }
-
-    .hero-headshot {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--border);
-      margin-bottom: 32px;
-      transition: border-color 0.3s;
-    }
-
-    .hero-headshot:hover { border-color: var(--accent); }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .hero h1 .accent { color: var(--accent); }
-
-    .hero-sub {
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto 40px;
-      line-height: 1.7;
-    }
-
-    .hero-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      padding: 12px 28px;
-      border: 1px solid var(--accent);
-      border-radius: 8px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .hero-cta:hover {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .hero-cta svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.2s;
-    }
-
-    .hero-cta:hover svg { transform: translateY(3px); }
-
-    /* ─── SECTIONS ─── */
-    section {
-      padding: 100px 24px;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 48px;
-    }
-
-    /* ─── PROJECTS ─── */
-    #projects { border-top: 1px solid var(--border); }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-    }
-
-    .project-card:hover {
-      border-color: #333;
-      transform: translateY(-2px);
-    }
-
-    .project-card[data-accent="blue"]::before { background: var(--winme); }
-    .project-card[data-accent="green"]::before { background: var(--jsonreceipts); }
-    .project-card[data-accent="purple"]::before { background: var(--choreup); }
-    .project-card[data-accent="amber"]::before { background: var(--lugares); }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .project-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .project-badge {
-      font-size: 0.6875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 10px;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-
-    .badge-live {
-      background: rgba(16, 185, 129, 0.12);
-      color: #34d399;
-    }
-
-    .badge-appstore {
-      background: rgba(139, 92, 246, 0.12);
-      color: #a78bfa;
-    }
-
-    .badge-wip {
-      background: rgba(245, 158, 11, 0.12);
-      color: #fbbf24;
-    }
-
-    .project-type {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
-    }
-
-    .project-desc {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 24px;
-      flex-grow: 1;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .tech-pill {
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 100px;
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .project-link:hover { color: var(--accent); }
-
-    .project-link svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* ─── ABOUT ─── */
-    #about { border-top: 1px solid var(--border); }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-
-    .about-text p {
-      font-size: 1.0625rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 20px;
-    }
-
-    .about-text p strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-    }
-
-    .stat {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-    }
-
-    .stat-number {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 0.8125rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    /* ─── TECH ─── */
-    .tech-section {
-      margin-top: 64px;
-      padding-top: 48px;
-      border-top: 1px solid var(--border);
-    }
-
-    .tech-section-title {
-      font-size: 0.8125rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
-    .tech-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .tech-item {
-      font-size: 0.875rem;
-      font-weight: 500;
-      padding: 8px 16px;
-      border-radius: 8px;
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-    }
-
-    /* ─── CONTACT ─── */
-    #contact {
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-
-    .contact-heading {
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    .contact-sub {
-      font-size: 1.0625rem;
-      color: var(--text-secondary);
-      margin-bottom: 40px;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.7;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-
-    .contact-btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .contact-btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .contact-btn-secondary {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .contact-btn-secondary:hover {
-      border-color: #444;
-      background: var(--bg-card);
-    }
-
-    .contact-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 24px;
-      text-align: center;
-    }
-
-    .footer-text {
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-    }
-
-    /* ─── ANIMATIONS ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .fade-in-delay-1 { transition-delay: 0.1s; }
-    .fade-in-delay-2 { transition-delay: 0.2s; }
-    .fade-in-delay-3 { transition-delay: 0.3s; }
-    .fade-in-delay-4 { transition-delay: 0.4s; }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      section { padding: 72px 20px; }
-
-      .nav-links { gap: 20px; }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .project-card { padding: 24px; }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-
-      .hero { padding: 100px 20px 60px; }
-
-      .hero-headshot {
-        width: 96px;
-        height: 96px;
-        margin-bottom: 24px;
-      }
-
-      .contact-links { flex-direction: column; align-items: center; }
-      .contact-btn { width: 100%; max-width: 280px; justify-content: center; }
-    }
-
-    @media (max-width: 480px) {
-      .nav-links { gap: 16px; }
-      .nav-links a { font-size: 0.8125rem; }
-      .stats-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- NAV -->
   <nav id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">axel<span>shipscode</span></a>
+      <a href="#" class="nav-logo"><img src="images/logo.png" alt="Axel Ships Code" class="nav-logo-img" /></a>
       <ul class="nav-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#about">About</a></li>
@@ -569,7 +40,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <img src="headshot.png" alt="Axel" class="hero-headshot fade-in" />
+        <img src="images/headshot.png" alt="Axel" class="hero-headshot fade-in" />
         <h1 class="fade-in fade-in-delay-1">Axel <span class="accent">ships code.</span></h1>
         <p class="hero-sub fade-in fade-in-delay-2">
           Full-stack engineer with 10+ years building production systems. Solo developer, team player, and technical leader.
@@ -620,7 +91,7 @@
             </div>
             <p class="project-type">AI Receipt Processing API</p>
             <p class="project-desc">
-              Developer API that turns receipt photos into structured JSON using AI. Full SaaS with credit-based billing, webhooks, rate limiting, fraud detection, and enterprise-grade security.
+              Developer API that turns receipt photos into structured JSON using AI. Full SaaS with credit-based billing, webhooks, fraud detection, and enterprise-grade security.
             </p>
             <div class="project-tech">
               <span class="tech-pill">Laravel</span>
@@ -725,7 +196,18 @@
                 <span class="tech-item">AWS</span>
                 <span class="tech-item">Tailwind CSS</span>
                 <span class="tech-item">Inertia.js</span>
+                <span class="tech-item">Cloudflare</span>
                 <span class="tech-item">Docker</span>
+              </div>
+            </div>
+
+            <div class="tech-section">
+              <p class="tech-section-title">Security</p>
+              <div class="tech-list">
+                <span class="tech-item">OWASP Top 10</span>
+                <span class="tech-item">SSL/TLS</span>
+                <span class="tech-item">WAF</span>
+                <span class="tech-item">CSRF/XSS Protection</span>
               </div>
             </div>
           </div>
@@ -737,7 +219,7 @@
     <section id="contact">
       <div class="section-inner">
         <p class="section-label fade-in">Contact</p>
-        <h2 class="contact-heading fade-in">Let's talk.</h2>
+        <h2 class="contact-heading fade-in">Let's talk</h2>
         <p class="contact-sub fade-in">
           Have a project in mind or want to work together? I'm always open to a good conversation.
         </p>
@@ -753,7 +235,10 @@
 
   <!-- FOOTER -->
   <footer>
-    <p class="footer-text">Axel ships code.</p>
+    <div class="footer-content">
+      <span>&copy; 2026 Axel Ships Code</span>
+      <span class="footer-status"><span class="pulse"></span> Available for work</span>
+    </div>
   </footer>
 
   <script>
