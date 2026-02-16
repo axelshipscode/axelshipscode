@@ -6,7 +6,7 @@ A personal website for a seasoned software engineer with 20 years of experience.
 
 I am a **Solo Develing**, leveling up one commit at a time.
 
-- ⚙️ 20 years of software engineering XP
+- ⚙️ 10+ years of software engineering XP
 - 🧱 Systems Architect & Infra Strategist
 - 🚀 Startup Scaling Sensei
 - 🕵️‍♂️ White Hat by day (and night)
