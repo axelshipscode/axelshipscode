@@ -19,12 +19,15 @@
   <link rel="icon" type="image/png" href="images/axel_ships_code_icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
+
+  <!-- Grain texture overlay -->
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- NAV -->
   <nav id="nav">
@@ -41,9 +44,22 @@
   <main>
     <!-- HERO -->
     <section class="hero">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-chess" aria-hidden="true"></div>
+
+      <!-- Decorative knight-move paths -->
+      <div class="knight-path knight-path-1" aria-hidden="true"></div>
+      <div class="knight-path knight-path-2" aria-hidden="true"></div>
+
+      <!-- Floating coordinate notations -->
+      <span class="coord coord-1" aria-hidden="true">d4</span>
+      <span class="coord coord-2" aria-hidden="true">c4</span>
+      <span class="coord coord-3" aria-hidden="true">Nc3</span>
+      <span class="coord coord-4" aria-hidden="true">Nf3</span>
+
       <div class="hero-content">
         <img src="images/headshot.png" alt="Axel" class="hero-headshot" />
-        <h1>Axel <span class="accent">ships code.</span></h1>
+        <h1>Axel <span class="accent">ships code.</span><span class="cursor" aria-hidden="true"></span></h1>
         <p class="hero-sub">
           Full-stack engineer with 10+ years building production systems. Solo developer, team player, and technical leader.
         </p>
@@ -56,13 +72,15 @@
 
     <!-- PROJECTS -->
     <section id="projects">
+      <div class="section-divider" aria-hidden="true"></div>
       <div class="section-inner">
-        <p class="section-label">Portfolio</p>
+        <p class="section-label">// Portfolio</p>
         <h2 class="section-title">Built and shipped.</h2>
 
         <div class="projects-grid">
           <!-- WinMe -->
           <div class="project-card" data-accent="blue">
+            <span class="move-number" aria-hidden="true">01</span>
             <div class="project-header">
               <span class="project-name">WinMe</span>
               <span class="project-badge badge-live">Live</span>
@@ -87,6 +105,7 @@
 
           <!-- JSON Receipts -->
           <div class="project-card" data-accent="green">
+            <span class="move-number" aria-hidden="true">02</span>
             <div class="project-header">
               <span class="project-name">JSON Receipts</span>
               <span class="project-badge badge-live">Live</span>
@@ -110,11 +129,12 @@
 
           <!-- ChoreUp — full-width -->
           <div class="project-card project-card-wide" data-accent="purple">
+            <span class="move-number" aria-hidden="true">03</span>
             <div class="project-header">
               <span class="project-name">ChoreUp</span>
               <span class="project-badge badge-appstore">App Store</span>
             </div>
-            <p class="project-type">Family Chore Management - iOS</p>
+            <p class="project-type">Family Chore Management — iOS</p>
             <p class="project-desc">
               Native iOS app for families to manage chores through a gamified rewards system. Offline-first, supports 7 languages, in-app purchases, and biometric authentication.
             </p>
@@ -133,8 +153,9 @@
 
         <!-- What's next -->
         <div class="upcoming">
-          <p class="upcoming-label">What's next</p>
+          <p class="upcoming-label">// What's next</p>
           <div class="upcoming-card" data-accent="amber">
+            <span class="move-number" aria-hidden="true">04</span>
             <div class="upcoming-main">
               <div>
                 <div class="project-header">
@@ -160,8 +181,9 @@
 
     <!-- ABOUT -->
     <section id="about">
+      <div class="section-divider" aria-hidden="true"></div>
       <div class="section-inner">
-        <p class="section-label">About</p>
+        <p class="section-label">// About</p>
         <h2 class="section-title">The person behind the code.</h2>
 
         <div class="about-grid">
@@ -201,7 +223,7 @@
             </div>
 
             <div class="tech-section">
-              <p class="tech-section-title">Technologies</p>
+              <p class="tech-section-title">// Technologies</p>
               <div class="tech-list">
                 <span class="tech-item">PHP</span>
                 <span class="tech-item">Laravel</span>
@@ -222,7 +244,7 @@
             </div>
 
             <div class="tech-section">
-              <p class="tech-section-title">Security</p>
+              <p class="tech-section-title">// Security</p>
               <div class="tech-list">
                 <span class="tech-item">OWASP Top 10</span>
                 <span class="tech-item">SSL/TLS</span>
@@ -237,9 +259,10 @@
 
     <!-- CONTACT -->
     <section id="contact">
+      <div class="section-divider" aria-hidden="true"></div>
       <div class="section-inner">
-        <p class="section-label">Contact</p>
-        <h2 class="contact-heading">Let's talk</h2>
+        <p class="section-label">// Contact</p>
+        <h2 class="contact-heading">Your move.</h2>
         <p class="contact-sub">
           Have a project in mind or want to work together? I'm always open to a good conversation.
         </p>
@@ -274,22 +297,26 @@
     window.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const ease = 'power3.out';
+      const ease = 'power2.out';
 
       // ── Hero entrance ──
-      const heroTl = gsap.timeline({ defaults: { ease, duration: 0.8 } });
+      const heroTl = gsap.timeline({ defaults: { ease, duration: 1 } });
       heroTl
-        .from('.hero-headshot', { y: 30, opacity: 0, scale: 0.9 })
-        .from('.hero h1', { y: 30, opacity: 0 }, '-=0.5')
-        .from('.hero-sub', { y: 20, opacity: 0 }, '-=0.5')
-        .from('.hero-cta', { y: 20, opacity: 0 }, '-=0.4');
+        .from('.hero-headshot', { y: 40, opacity: 0, scale: 0.85, duration: 1.1 })
+        .from('.hero h1', { y: 30, opacity: 0 }, '-=0.6')
+        .from('.hero-sub', { y: 20, opacity: 0, duration: 0.8 }, '-=0.5')
+        .from('.hero-cta', { y: 20, opacity: 0, duration: 0.7 }, '-=0.4');
+
+      // ── Decorative elements ──
+      gsap.from('.knight-path', { opacity: 0, duration: 2, delay: 1.2, stagger: 0.3 });
+      gsap.from('.coord', { opacity: 0, duration: 1.8, delay: 1.5, stagger: 0.2 });
 
       // ── Helper: scroll-triggered reveal ──
       function reveal(selector, vars = {}) {
         gsap.from(selector, {
           y: 30,
           opacity: 0,
-          duration: 0.7,
+          duration: 0.8,
           ease,
           stagger: 0.1,
           scrollTrigger: {
